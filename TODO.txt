@@ -1,0 +1,28 @@
+TODO :
+
+Terms :
+    5 tuple : (JSON) (less priority)
+		sigma = alphabets (alphabet set)
+		Q = States (set of states)
+		q0 = Initial state
+		F = final states (set of final states)
+		delta = transition (a transition function/ alphabet set)
+			> takes current state and alphabet
+			> returns next state
+			OR eg.  q1,1,q1
+                    q1,0,q2
+	> need JSON parser
+
+	DFA_generator :
+	    - Accepts 5 tuple
+	    - returns DFA
+
+    DFA :
+        - .canRecognize function
+            > takes string (language/alphabets)
+            > returns true or false.
+Questions :
+
+> State can be rich object or only string name is enough ?
+> Transition ? instead of transition table, can it be something else ?
+> Should state knows that it is final or not ?
