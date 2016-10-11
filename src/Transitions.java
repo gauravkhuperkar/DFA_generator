@@ -17,6 +17,9 @@ public class Transitions {
             String alphabet = split[1];
             String next_state = split[2];
             HashMap path = new HashMap();
+            if (delta.containsKey(current_state)) {
+                path = (HashMap) delta.get(current_state);
+            }
             path.put(alphabet, next_state);
             delta.put(current_state, path);
         }
