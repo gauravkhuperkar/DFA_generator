@@ -21,7 +21,23 @@ Terms :
         - .canRecognize function
             > takes string (language/alphabets)
             > returns true or false.
-Questions :
+
+
+Tuple : {
+    sigma = ["0","1"];
+    Q = ["q0", "q1", "q2" ,"q3", "q4"]
+    q0 = "q0"
+    F = ["q2", "q4"]
+    delta = {
+              q0 : {1: "q1", 0 : "q2"},
+              q1 : {1: "q1", 0 : "q3"},
+              q2 : {1: "q2", 0 : "q0"},
+              q3 : {1: "q0", 0 : "q2"}
+            }
+    }
+
+
+Still open Questions :
 
 > State can be rich object or only string name is enough ?
 > Transition ? instead of transition table, can it be something else ?
