@@ -13,15 +13,15 @@ public class Transitions {
 
         for (int i = 0; i < transition.length; i++) {
             String[] split = transition[i].split(",");
-            String current_state = split[0];
+            String currentState = split[0];
             String alphabet = split[1];
-            String next_state = split[2];
+            String nextState = split[2];
             HashMap path = new HashMap();
-            if (delta.containsKey(current_state)) {
-                path = (HashMap) delta.get(current_state);
+            if (delta.containsKey(currentState)) {
+                path = (HashMap) delta.get(currentState);
             }
-            path.put(alphabet, next_state);
-            delta.put(current_state, path);
+            path.put(alphabet, nextState);
+            delta.put(currentState, path);
         }
         return delta;
     }

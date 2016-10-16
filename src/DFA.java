@@ -2,27 +2,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DFA {
-    private String[] sigma;
-    private String[] states;
-    private String initial_state;
-    private ArrayList<String> final_states;
+    private ArrayList<String> sigma;
+    private ArrayList<String> states;
+    private String initialState;
+    private ArrayList<String> finalStates;
     private HashMap delta;
 
-    public DFA(DFA_eqution equation) {
+    public DFA(DFAEquation equation) {
         this.sigma = equation.sigma;
         this.states = equation.states;
-        this.initial_state = equation.initial_state;
-        this.final_states = equation.final_states;
+        this.initialState = equation.initialState;
+        this.finalStates = equation.finalStates;
         this.delta = equation.delta;
     }
 
     public Boolean canRecognize(String string) {
         int length = string.length();
-        String current_state = initial_state;
+        String current_state = initialState;
         for (int i = 0; i < length; i++) {
             HashMap path = (HashMap) delta.get(current_state);
             current_state = (String) path.get((string.split(""))[i]);
         }
-        return final_states.contains(current_state);
+        return finalStates.contains(current_state);
     }
 }
