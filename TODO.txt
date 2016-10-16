@@ -23,7 +23,7 @@ Terms :
             > returns true or false.
 
 
-Tuple : {
+DFAEquation : {
     sigma = ["0","1"];
     Q = ["q0", "q1", "q2" ,"q3", "q4"];
     q0 = "q0";
@@ -36,6 +36,23 @@ Tuple : {
               q4 : {1: "q1", 0 : "q3"}
             }
     }
+
+Transitions :
+    > Takes : q1,1,q1\nq1,0,q2
+    > gives : q1 : {1: "q1", 0 : "q2"}
+
+
+JSON :
+    > need to read json file
+    > need to parse
+
+Parser :
+    > read json file
+    > parse recursively to Array of HashMap
+    [{ tuple: {"HashMap for DFAEquation"}},
+     { tuple: {"HashMap for DFAEquation"}},
+     { tuple: {"HashMap for DFAEquation"}}]
+     private methods: for parsing tuple, alphabets, delta and so on......
 
 
 Still open Questions :
