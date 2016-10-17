@@ -15,7 +15,10 @@ public class Parser {
             jsonText.append(scanner.nextLine().toString());
         }
 
-        ArrayList dfaEquationsText = (ArrayList) new JSONParser().parse(jsonText.substring(1, jsonText.length() - 1).replaceAll("\\\\", ""));
+        ArrayList dfaEquationsText = (ArrayList) new JSONParser()
+                .parse(jsonText.substring(1, jsonText.length() - 1)
+                .replaceAll("\\\\", ""));
+
         for (int i = 0; i < dfaEquationsText.size(); i++) {
             HashMap<String, Object> hash = (HashMap) dfaEquationsText.get(i);
             equations.add(getDEAEquation(hash));
@@ -25,25 +28,16 @@ public class Parser {
 
     private DFAEquation getDEAEquation(HashMap hash) {
         HashMap tuple = (HashMap) hash.get("tuple");
-        Object alphabets = tuple.get("alphabets");
+        String name = (String) hash.get("name");
+        ArrayList alphabets = (ArrayList) tuple.get("alphabets");
         String startState = (String) hash.get("start-state");
-        Object finalStates = tuple.get("final-states");
-        Object states = tuple.get("states");
-        return new DFAEquation(parseSigma(alphabets), parseStates(states), startState, parseFinalStatesList(finalStates), parseDelta(tuple));
+        ArrayList finalStates = (ArrayList) tuple.get("final-states");
+        ArrayList states = (ArrayList) tuple.get("states");
+        return new DFAEquation(name, alphabets, states, startState, finalStates, parseDelta(tuple));
     }
-     private ArrayList<String> parseSigma(Object alphabets) {
-         return (ArrayList<String>) alphabets;
-     }
 
-     private ArrayList parseStates(Object states) {
-         return (ArrayList) states;
-     }
-
-     private ArrayList parseFinalStatesList(Object finalStates) {
-         return (ArrayList) finalStates;
-     }
-
-     private HashMap<String, HashMap<String, String>> parseDelta(HashMap tuple) {
-         return new HashMap<>();
+     private HashMap<String, HashMap> parseDelta(HashMap tuple) {
+         HashMap<String, HashMap> delta = (HashMap<String, HashMap>) tuple.get("delta");
+         return delta;
      }
 }

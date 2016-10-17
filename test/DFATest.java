@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 public class DFATest {
     @Test
     public void DFA_should_able_to_recognize_the_string() throws Exception {
+        String name = "Random DFA";
         ArrayList<String> sigma = new ArrayList<>();
         sigma.add("0");
         sigma.add("1");
@@ -18,7 +19,7 @@ public class DFATest {
         final_states.add("q2");
         Transitions transitions = new Transitions("q0,0,q0\nq0,1,q1\nq1,0,q1\nq1,1,q2\nq2,0,q2\nq2,1,q2");
         HashMap delta = transitions.getTransition();
-        DFAEquation equation = new DFAEquation(sigma, states, initial_state, final_states, delta);
+        DFAEquation equation = new DFAEquation(name ,sigma, states, initial_state, final_states, delta);
         DFA dfa = new DFA(equation);
 
         assertTrue(dfa.canRecognize("010101"));
