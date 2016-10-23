@@ -16,10 +16,22 @@ public class DFATest {
         String initial_state = "q0";
         ArrayList<String> final_states = new ArrayList<>();
         final_states.add("q2");
-        Transitions transitions = new Transitions("q0,0,q0\nq0,1,q1\nq1,0,q1\nq1,1,q2\nq2,0,q2\nq2,1,q2");
-        HashMap delta = transitions.getTransition();
-        DFA dfa = new DFA(sigma, states, initial_state, final_states, delta);
 
+        HashMap path1 = new HashMap();
+        path1.put("0","q0");
+        path1.put("1","q1");
+        HashMap path2 = new HashMap();
+        path2.put("0","q1");
+        path2.put("1","q2");
+        HashMap path3 = new HashMap();
+        path3.put("0","q2");
+        path3.put("1","q2");
+        HashMap delta = new HashMap();
+        delta.put("q0",path1);
+        delta.put("q1",path2);
+        delta.put("q2",path3);
+
+        DFA dfa = new DFA(sigma, states, initial_state, final_states, delta);
         assertTrue(dfa.canRecognize("010101"));
     }
 }
