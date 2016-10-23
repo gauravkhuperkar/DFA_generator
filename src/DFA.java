@@ -8,12 +8,12 @@ public class DFA {
     private ArrayList<String> finalStates;
     private HashMap delta;
 
-    public DFA(DFAEquation equation) {
-        this.sigma = equation.sigma;
-        this.states = equation.states;
-        this.initialState = equation.initialState;
-        this.finalStates = equation.finalStates;
-        this.delta = equation.delta;
+    public DFA(ArrayList<String> sigma, ArrayList<String> states, String initialState, ArrayList<String> finalStates, HashMap delta) {
+        this.sigma = sigma;
+        this.states = states;
+        this.initialState = initialState;
+        this.finalStates = finalStates;
+        this.delta = delta;
     }
 
     public Boolean canRecognize(String string) {
@@ -23,6 +23,6 @@ public class DFA {
             HashMap path = (HashMap) delta.get(current_state);
             current_state = (String) path.get((string.split(""))[i]);
         }
-        return finalStates.contains(current_state);
+        return this.finalStates.contains(current_state);
     }
 }

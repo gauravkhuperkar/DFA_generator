@@ -60,3 +60,12 @@ Still open Questions :
 > State can be rich object or only string name is enough ?
 > Transition ? instead of transition table, can it be something else ?
 > Should state knows that it is final or not ?
+
+* Wrapper for DFA to make a sanity
+{
+    name : "name",
+    dfa : DFA,
+    passingState: [],
+    failingState: []
+}
+DFAWrapper dfaSet = new DFAWrapper(name,DFAEquation,passingState,failingState);

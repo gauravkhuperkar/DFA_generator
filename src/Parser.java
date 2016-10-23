@@ -7,8 +7,9 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Parser {
+
     public ArrayList parse() throws ParseException, FileNotFoundException {
-        ArrayList<DFAEquation> equations = new ArrayList<>();
+        ArrayList<DFA> equations = new ArrayList<>();
         Scanner scanner = new Scanner(new File("testRunner/data.json"));
         StringBuilder jsonText = new StringBuilder();
         while(scanner.hasNextLine()) {
@@ -26,14 +27,13 @@ public class Parser {
         return equations;
     }
 
-    private DFAEquation getDEAEquation(HashMap hash) {
+    private DFA getDEAEquation(HashMap hash) {
         HashMap tuple = (HashMap) hash.get("tuple");
-        String name = (String) hash.get("name");
         ArrayList alphabets = (ArrayList) tuple.get("alphabets");
         String startState = (String) hash.get("start-state");
         ArrayList finalStates = (ArrayList) tuple.get("final-states");
         ArrayList states = (ArrayList) tuple.get("states");
-        return new DFAEquation(name, alphabets, states, startState, finalStates, parseDelta(tuple));
+        return new DFA(alphabets, states, startState, finalStates, parseDelta(tuple));
     }
 
      private HashMap<String, HashMap> parseDelta(HashMap tuple) {
