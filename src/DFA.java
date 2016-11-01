@@ -5,10 +5,10 @@ public class DFA {
     private ArrayList<String> sigma;
     private ArrayList<String> states;
     private String initialState;
-    private ArrayList<String> finalStates;
+    private States finalStates;
     private HashMap delta;
 
-    public DFA(ArrayList<String> sigma, ArrayList<String> states, String initialState, ArrayList<String> finalStates, HashMap delta) {
+    public DFA(ArrayList<String> sigma, ArrayList<String> states, String initialState, States finalStates, HashMap delta) {
         this.sigma = sigma;
         this.states = states;
         this.initialState = initialState;
@@ -18,11 +18,13 @@ public class DFA {
 
     public Boolean canRecognize(String string) {
         int length = string.length();
-        String current_state = initialState;
+        String currentState = initialState;
         for (int i = 0; i < length; i++) {
-            HashMap path = (HashMap) delta.get(current_state);
-            current_state = (String) path.get((string.split(""))[i]);
+            HashMap path = (HashMap) delta.get(currentState);
+            System.out.println("path" + path);
+            currentState = (String) path.get((string.split(""))[i]);
+            System.out.println(currentState);
         }
-        return this.finalStates.contains(current_state);
+        return this.finalStates.contains(currentState);
     }
 }

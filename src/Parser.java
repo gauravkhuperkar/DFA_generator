@@ -38,8 +38,9 @@ public class Parser {
         ArrayList alphabets = (ArrayList) tuple.get("alphabets");
         String startState = (String) tuple.get("start-state");
         ArrayList finalStates = (ArrayList) tuple.get("final-states");
+        States finalState = new States(finalStates);
         ArrayList states = (ArrayList) tuple.get("states");
-        return new DFA(alphabets, states, startState, finalStates, parseDelta(tuple));
+        return new DFA(alphabets, states, startState, finalState, parseDelta(tuple));
     }
 
      private HashMap<String, HashMap> parseDelta(HashMap tuple) {

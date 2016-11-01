@@ -23,7 +23,7 @@ Terms :
             > returns true or false.
 
 
-DFAEquation : {
+DFA : {
     sigma = ["0","1"];
     Q = ["q0", "q1", "q2" ,"q3", "q4"];
     q0 = "q0";
@@ -67,5 +67,25 @@ Still open Questions :
     dfa : DFA,
     passingState: [],
     failingState: []
+}
+
+> State and States needs to be richer.
+
+* States :
+    > containStates (take one state and verify)
+    > containAnyOF (take list of state and verify)
+
+NFA {
+   sigma = ["a","b","#"]; // # for sigma
+   states = ["q0", "q1", "q2" ];
+   Initial state = "q0";
+   Final states = ["q2", "q4"]
+   delta = {
+        q0 : {b: ["q1"], "#": ["q2"]},
+        q1 : {a: ["q1,q2"], b: ["q2"]}, // if same alphabet going in two diff states then ?
+        q2 : {a: ["q1"]}
+   }
+
+   > currentStates = []; // multiple output states
 }
 DFAWrapper dfaSet = new DFAWrapper(name,DFAEquation,passingState,failingState);

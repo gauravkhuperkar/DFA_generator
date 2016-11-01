@@ -13,9 +13,10 @@ public class DFATest {
         ArrayList<String> states = new ArrayList<>();
         states.add("q0");
         states.add("q1");
-        String initial_state = "q0";
+        String initialState = "q0";
         ArrayList<String> final_states = new ArrayList<>();
         final_states.add("q2");
+        States finalState = new States(final_states);
 
         HashMap path1 = new HashMap();
         path1.put("0","q0");
@@ -31,7 +32,7 @@ public class DFATest {
         delta.put("q1",path2);
         delta.put("q2",path3);
 
-        DFA dfa = new DFA(sigma, states, initial_state, final_states, delta);
+        DFA dfa = new DFA(sigma, states, initialState, finalState, delta);
         assertTrue(dfa.canRecognize("010101"));
     }
 }
