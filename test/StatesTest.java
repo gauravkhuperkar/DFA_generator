@@ -91,7 +91,7 @@ public class StatesTest {
         finalStates.add("q0");
         finalStates.add("q2");
         finalStates.add("q4");
-        
+
         assertFalse(states.containsAllOf(finalStates));
     }
 }

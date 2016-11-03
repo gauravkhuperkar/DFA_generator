@@ -26,5 +26,4 @@ public class States {
         }
         return true;
     }
-
 }
