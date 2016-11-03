@@ -18,4 +18,13 @@ public class States {
         }
         return false;
     }
+
+    public boolean containsAllOf(ArrayList<String> states) {
+        for (String state: states) {
+            if (!this.contains(state))
+                return false;
+        }
+        return true;
+    }
+
 }
