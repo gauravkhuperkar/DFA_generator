@@ -13,8 +13,9 @@ public class States {
 
     public boolean containsAnyOf(ArrayList<String> states) {
         for (String state: states) {
-            this.contains(state);
+            if (this.contains(state))
+                return true;
         }
-        return true;
+        return false;
     }
 }

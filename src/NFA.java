@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class NFA {
     private ArrayList<String> sigma;
@@ -18,28 +19,44 @@ public class NFA {
 
     public Boolean canRecognize(String string) {
         int length = string.length();
-        ArrayList<String> currentStates = new ArrayList();
+        ArrayList<String> currentStates = new ArrayList<>();
+        HashSet<String> result = new HashSet<>();
         currentStates.add(initialState);
+        HashMap iPath = (HashMap) delta.get(initialState);
+        if (iPath.containsKey("#")){
+            if (!currentStates.contains(iPath.get("ds#")))
+                currentStates.addAll((ArrayList)iPath.get("#"));
+        }
 
+        // string length
         for (int i = 0; i < length; i++) {
             String alphabet = (string.split(""))[i];
+
+            //number of current states
             for (int j = 0; j < currentStates.size(); j++) {
                 HashMap path = (HashMap) delta.get(currentStates.get(j));
+
                 ArrayList<String> nextStates = (ArrayList) path.get(alphabet);
 
-                if(nextStates == null ) {
+                if (path.containsKey("#"))
+                    result.addAll((ArrayList) path.get("#"));
+
+                if (nextStates == null) {
                     currentStates.remove(currentStates.get(j));
+                    break;
                 } else {
-                    for (int k = 0; k < nextStates.size(); k++) {
-                        if (!currentStates.contains(nextStates.get(k))) {
-                            currentStates.add(nextStates.get(k));
-                            if (path.containsKey("#")) currentStates.addAll((ArrayList) path.get("#"));
-                        }
-                    }
+                    result.addAll(nextStates);
+
                 }
             }
-
         }
+
+        // adding currents machines to currentStates
+        for (String state : result) {
+            if (!currentStates.contains(state))
+                currentStates.add(state);
+        }
+        result.removeAll(result);
         return this.finalStates.containsAnyOf(currentStates);
     }
 }

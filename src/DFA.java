@@ -21,9 +21,7 @@ public class DFA {
         String currentState = initialState;
         for (int i = 0; i < length; i++) {
             HashMap path = (HashMap) delta.get(currentState);
-            System.out.println("path" + path);
             currentState = (String) path.get((string.split(""))[i]);
-            System.out.println(currentState);
         }
         return this.finalStates.contains(currentState);
     }
